@@ -3,6 +3,7 @@ import { auditInputSchema } from "@/lib/engine/type"; // could be 'types' – ma
 import { runAudit } from "@/lib/engine/runAudit";
 import { createServerSupabase } from "@/lib/supabase/server";
 import { randomUUID } from "crypto";
+import { generateSummary } from "@/lib/summary";
 
 export async function POST(request: Request) {
   try {
@@ -16,10 +17,13 @@ export async function POST(request: Request) {
     }
 
     const auditResult = runAudit(parsed.data);
+    const summary = await generateSummary(auditResult);
 
     const auditId = randomUUID();
     const publicId = randomUUID().split("-")[0];
     const shareToken = randomUUID();
+
+    // Generate AI summary (or fallback)
 
     const supabase = createServerSupabase();
     const { error } = await supabase.from("audits").insert({
@@ -29,8 +33,8 @@ export async function POST(request: Request) {
       savings_summary: {
         totalMonthlySavings: auditResult.totalMonthlySavings,
         totalAnnualSavings: auditResult.totalAnnualSavings,
-        findings: auditResult.findings, // ← THIS IS CRUCIAL
-        summary: auditResult.summary || "",
+        findings: auditResult.findings,
+        summary: summary, // ← add this
         input: parsed.data,
       },
       summary_text: auditResult.summary || "",
