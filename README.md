@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AI Spend Audit
 
-## Getting Started
+A free tool that helps startups identify overspending on AI tools and suggests cheaper alternatives or discounted credits via Credex.  
+Built for the Credex Web Development Intern Assignment – Round 1.
 
-First, run the development server:
+## Screenshots
+
+[![Audit form](https://via.placeholder.com/400x250?text=Form)](https://your-screenshot-url-1)
+[![Results page](https://via.placeholder.com/400x250?text=Results)](https://your-screenshot-url-2)
+[![Lead capture modal](https://via.placeholder.com/400x250?text=Modal)](https://your-screenshot-url-3)
+
+_Replace with actual screenshots or a 30‑second screen recording link (YouTube/Loom)._
+
+## Quick Start
 
 ```bash
+# Clone the repo
+git clone https://github.com/YOUR_USER/ai-spend-audit.git
+cd ai-spend-audit
+
+# Install dependencies
+npm install
+
+# Set up environment variables
+cp .env.example .env.local
+# Fill in your Supabase and OpenRouter keys in .env.local
+
+# Start the dev server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Deploy: The easiest way is via Vercel. Connect the repo and set the environment variables in the Vercel dashboard.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+**Live URL:** [https://your-app.vercel.app](https://your-app.vercel.app)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Decisions
 
-## Learn More
+details:
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Next.js App Router with TypeScript** – Enables server‑side data fetching for the audit results page and keeps the audit engine logic private.
+- **Supabase as database** – Instant REST API, real‑time features if needed, and generous free tier. Avoids managing a separate Postgres instance.
+- **Declarative audit engine** – All pricing and rules are defined in a single registry (`pricing.ts`). Adding a new tool requires only adding one object, no other code changes.
+- **OpenRouter for AI summary** – Free tier, no credit card required, and easy fallback to a deterministic template. Works without any paid API.
+- **localStorage for form persistence** – Avoids server‑side session management, keeps the form resilient to page reloads, and respects user privacy until they explicitly share their email.
