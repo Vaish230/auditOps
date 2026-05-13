@@ -3,11 +3,10 @@
 A free tool that helps startups identify overspending on AI tools and suggests cheaper alternatives or discounted credits via Credex.  
 Built for the Credex Web Development Intern Assignment.
 
-## Screenshots
+## Screenshots / Demo
 
-[![Audit form](https://via.placeholder.com/400x250?text=Form)](https://your-screenshot-url-1)
-[![Results page](https://via.placeholder.com/400x250?text=Results)](https://your-screenshot-url-2)
-[![Lead capture modal](https://via.placeholder.com/400x250?text=Modal)](https://your-screenshot-url-3)
+**30‑second walkthrough (Loom):**  
+[Watch the demo](https://www.loom.com/share/88116e88ecbc4c2f95734ef8378fbada)
 
 _Replace with actual screenshots or a 30‑second screen recording link (YouTube/Loom)._
 
@@ -31,7 +30,7 @@ npm run dev
 
 Deploy: The easiest way is via Vercel. Connect the repo and set the environment variables in the Vercel dashboard.
 
-**Live URL:** [https://your-app.vercel.app](https://your-app.vercel.app)
+**Live URL:** [https://auditops-flax.vercel.app/](https://auditops-flax.vercel.app/)
 
 ## Decisions
 
