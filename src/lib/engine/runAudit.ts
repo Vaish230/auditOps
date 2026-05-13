@@ -9,7 +9,7 @@ export function runAudit(input: AuditInput): AuditResult {
     if (!toolConfig) {
       findings.push({
         tool: ti.tool,
-        currentPlan: ti.plan,
+        currentPlan: ti.plan || "",
         currentMonthlySpend: ti.monthlySpend,
         recommendedAction: "stay",
         monthlySavings: 0,
@@ -22,11 +22,11 @@ export function runAudit(input: AuditInput): AuditResult {
     if (!currentPlan) {
       findings.push({
         tool: ti.tool,
-        currentPlan: ti.plan,
+        currentPlan: ti.plan || "",
         currentMonthlySpend: ti.monthlySpend,
         recommendedAction: "stay",
         monthlySavings: 0,
-        reason: `Plan "${ti.plan}" not found in pricing data.`,
+        reason: `Plan "${ti.plan || ""}" not found in pricing data.`,
       });
       continue;
     }
@@ -59,7 +59,7 @@ export function runAudit(input: AuditInput): AuditResult {
 
     let bestRecommendation: Finding = {
       tool: ti.tool,
-      currentPlan: ti.plan,
+      currentPlan: ti.plan || "",
       currentMonthlySpend: ti.monthlySpend,
       recommendedAction: "stay",
       monthlySavings: 0,
@@ -93,12 +93,12 @@ export function runAudit(input: AuditInput): AuditResult {
       if (savings > 0 && savings > bestRecommendation.monthlySavings) {
         bestRecommendation = {
           tool: ti.tool,
-          currentPlan: ti.plan,
+          currentPlan: ti.plan || "",
           currentMonthlySpend: ti.monthlySpend,
           recommendedAction: "switch_plan",
           recommendedPlan: cheaperSameVendorPlan.name,
           monthlySavings: savings,
-          reason: `You could switch from ${ti.plan} ($${currentPlan.monthlyPricePerSeat}/seat) to ${cheaperSameVendorPlan.name} ($${cheaperSameVendorPlan.monthlyPricePerSeat}/seat) and save $${savings}/month.`,
+          reason: `You could switch from ${ti.plan || ""} ($${currentPlan.monthlyPricePerSeat}/seat) to ${cheaperSameVendorPlan.name} ($${cheaperSameVendorPlan.monthlyPricePerSeat}/seat) and save $${savings}/month.`,
         };
       }
     }
@@ -116,7 +116,7 @@ export function runAudit(input: AuditInput): AuditResult {
       ) {
         bestRecommendation = {
           tool: ti.tool,
-          currentPlan: ti.plan,
+          currentPlan: ti.plan || "",
           currentMonthlySpend: ti.monthlySpend,
           recommendedAction: "switch_tool",
           recommendedPlan: cheapestAlternative.name,
@@ -128,7 +128,7 @@ export function runAudit(input: AuditInput): AuditResult {
 
     // Rule: if team size small and on Team plan, suggest individual plans
     if (
-      ti.plan.toLowerCase().includes("team") &&
+      (ti.plan || "").toLowerCase().includes("team") &&
       ti.seats <= 2 &&
       currentPlan.monthlyPricePerSeat > 0
     ) {
@@ -147,7 +147,7 @@ export function runAudit(input: AuditInput): AuditResult {
         if (savings > bestRecommendation.monthlySavings) {
           bestRecommendation = {
             tool: ti.tool,
-            currentPlan: ti.plan,
+            currentPlan: ti.plan || "",
             currentMonthlySpend: ti.monthlySpend,
             recommendedAction: "switch_plan",
             recommendedPlan: individualPlan.name,
@@ -166,7 +166,7 @@ export function runAudit(input: AuditInput): AuditResult {
         if (savings > bestRecommendation.monthlySavings) {
           bestRecommendation = {
             tool: ti.tool,
-            currentPlan: ti.plan,
+            currentPlan: ti.plan || "",
             currentMonthlySpend: ti.monthlySpend,
             recommendedAction: "buy_credits",
             monthlySavings: savings,

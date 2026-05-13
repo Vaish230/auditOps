@@ -11,7 +11,7 @@ const STORAGE_KEY = "audit-form";
 const defaultTools = Object.keys(tools).map((slug) => ({
   tool: slug,
   enabled: false,
-  plan: undefined,
+  plan: "",
   monthlySpend: 0,
   seats: 1,
 }));
@@ -24,7 +24,7 @@ const defaultValues: AuditInput = {
 
 export function useLocalStorageForm(): UseFormReturn<AuditInput> {
   const form = useForm<AuditInput>({
-    resolver: zodResolver(auditInputSchema),
+    resolver: zodResolver(auditInputSchema) as any,
     defaultValues,
   });
 
