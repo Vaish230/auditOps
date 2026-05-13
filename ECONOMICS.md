@@ -1,10 +1,10 @@
 # Economics
 
-If Credex deployed this tool tomorrow, here’s how the unit economics could look.
+If Credex deployed this tool tomorrow, here's how the unit economics could look.
 
 ## Value of a converted lead to Credex
 
-A “converted lead” means a startup that:
+A "converted lead" means a startup that:
 
 1. Completes the audit (free)
 2. Books a consultation with Credex

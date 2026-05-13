@@ -24,4 +24,4 @@ _(mock logos: Acme AI, DevFlow, StartupOS)_
 - **Q:** Will you spam me if I give my email?  
   **A:** No. We'll only email your audit report and, if you save >$500/month, offer a free consultation.
 - **Q:** How does Credex make money?  
-  **A:** Credex sells discounted AI infrastructure credits. If your audit shows big savings, we may suggest using credits for even more savings.
+  **A:** Credex sells discounted AI infrastructure credits.

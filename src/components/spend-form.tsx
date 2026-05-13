@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useLocalStorageForm } from "@/hooks/useLocalStorageForm";
@@ -57,16 +58,11 @@ export function SpendForm() {
   }
 
   const allTools = Object.values(tools);
-  // Get indices of enabled tools for rendering
-  const enabledIndices = form
-    .watch("tools")
-    .map((t, i) => (t.enabled ? i : -1))
-    .filter((i) => i !== -1);
 
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid gap-6 md:grid-cols-3 items-start">
           {allTools.map((tool, index) => {
             const isEnabled = form.watch(`tools.${index}.enabled`);
             return (
@@ -92,77 +88,76 @@ export function SpendForm() {
                     />
                   </CardTitle>
                 </CardHeader>
-                {isEnabled && (
-                  <CardContent className="space-y-4">
-                    <FormField
-                      control={form.control}
-                      name={`tools.${index}.plan`}
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Plan</FormLabel>
-                          <Select
-                            onValueChange={field.onChange}
-                            value={field.value || ""}
-                          >
-                            <FormControl>
-                              <SelectTrigger>
-                                <SelectValue placeholder="Select plan" />
-                              </SelectTrigger>
-                            </FormControl>
-                            <SelectContent>
-                              {tool.plans.map((plan) => (
-                                <SelectItem key={plan.name} value={plan.name}>
-                                  {plan.name} — ${plan.monthlyPricePerSeat}/seat
-                                </SelectItem>
-                              ))}
-                            </SelectContent>
-                          </Select>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={form.control}
-                      name={`tools.${index}.monthlySpend`}
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Monthly Spend ($)</FormLabel>
+
+                <CardContent className="space-y-4">
+                  <FormField
+                    control={form.control}
+                    name={`tools.${index}.plan`}
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Plan</FormLabel>
+                        <Select
+                          onValueChange={field.onChange}
+                          value={field.value || ""}
+                        >
                           <FormControl>
-                            <Input
-                              type="number"
-                              min={0}
-                              {...field}
-                              onChange={(e) =>
-                                field.onChange(parseFloat(e.target.value) || 0)
-                              }
-                            />
+                            <SelectTrigger>
+                              <SelectValue placeholder="Select plan" />
+                            </SelectTrigger>
                           </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={form.control}
-                      name={`tools.${index}.seats`}
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Seats</FormLabel>
-                          <FormControl>
-                            <Input
-                              type="number"
-                              min={1}
-                              {...field}
-                              onChange={(e) =>
-                                field.onChange(parseInt(e.target.value) || 1)
-                              }
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  </CardContent>
-                )}
+                          <SelectContent>
+                            {tool.plans.map((plan) => (
+                              <SelectItem key={plan.name} value={plan.name}>
+                                {plan.name} — ${plan.monthlyPricePerSeat}/seat
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name={`tools.${index}.monthlySpend`}
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Monthly Spend ($)</FormLabel>
+                        <FormControl>
+                          <Input
+                            type="number"
+                            min={0}
+                            {...field}
+                            onChange={(e) =>
+                              field.onChange(parseFloat(e.target.value) || 0)
+                            }
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name={`tools.${index}.seats`}
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Seats</FormLabel>
+                        <FormControl>
+                          <Input
+                            type="number"
+                            min={1}
+                            {...field}
+                            onChange={(e) =>
+                              field.onChange(parseInt(e.target.value) || 1)
+                            }
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </CardContent>
               </Card>
             );
           })}

@@ -13,14 +13,14 @@ You are an AI spend analyst. Based on the following audit of a startup's AI tool
 
 - Forces a consistent opening phrase so every summary is professional and on‑brand.
 - Injects real numbers from the audit engine to prevent hallucination.
-- Explicitly instructs the model to be honest – no manufactured savings.
+- Explicitly instructs the model to be honest - no manufactured savings.
 - Limits length to ~100 words, ideal for a quick‑scan results page.
 
-### What we tried that didn’t work
+### What we tried that didn't work
 
-- Asking for “a detailed report” – the model produced 300+ words, overwhelming the UI.
-- Omitting the savings totals – the model invented plausible but incorrect numbers.
-- Not specifying the opening phrase – summaries lacked a unified voice.
+- Asking for "a detailed report" - the model produced 300+ words, overwhelming the UI.
+- Omitting the savings totals - the model invented plausible but incorrect numbers.
+- Not specifying the opening phrase - summaries lacked a unified voice.
 
 ### Fallback
 

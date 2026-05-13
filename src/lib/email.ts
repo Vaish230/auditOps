@@ -3,14 +3,14 @@ import { Resend } from "resend";
 export async function sendConfirmationEmail(to: string, auditUrl: string) {
   const resendApiKey = process.env.RESEND_API_KEY;
   if (!resendApiKey) {
-    console.log("No RESEND_API_KEY, skipping email");
+    console.log(`[DEV EMAIL] To: ${to}, URL: ${auditUrl}`);
     return;
   }
 
   const resend = new Resend(resendApiKey);
   try {
-    await resend.emails.send({
-      from: "Credex Audit <audit@credex.rocks>",
+    const response = await resend.emails.send({
+      from: "Credex Audit <onboarding@resend.dev>",
       to,
       subject: "Your AI Spend Audit Report",
       html: `
@@ -20,7 +20,12 @@ export async function sendConfirmationEmail(to: string, auditUrl: string) {
         <p>If you have significant savings opportunities, our team will reach out to discuss discounted credits.</p>
       `,
     });
+    if ("id" in response) {
+      console.log("Email sent! Resend ID:", response.id);
+    } else {
+      console.log("Email sent! Response:", response);
+    }
   } catch (error) {
-    console.error("Resend email error:", error);
+    console.error("Failed to send email:", error);
   }
 }

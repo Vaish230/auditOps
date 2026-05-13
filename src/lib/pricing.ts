@@ -99,7 +99,7 @@ export const tools: Record<string, ToolConfig> = {
       },
       {
         name: "Pro",
-        monthlyPricePerSeat: 20,
+        monthlyPricePerSeat: 17,
         sourceUrl: "https://claude.ai/pricing",
         lastVerified: "2026-05-07",
       },
@@ -111,19 +111,19 @@ export const tools: Record<string, ToolConfig> = {
       },
       {
         name: "Team",
-        monthlyPricePerSeat: 25,
+        monthlyPricePerSeat: 20,
         sourceUrl: "https://claude.ai/pricing",
         lastVerified: "2026-05-07",
       },
       {
         name: "Enterprise",
-        monthlyPricePerSeat: 0,
+        monthlyPricePerSeat: 20,
         sourceUrl: "https://claude.ai/pricing",
         lastVerified: "2026-05-07",
       },
       {
         name: "API direct",
-        monthlyPricePerSeat: 0,
+        monthlyPricePerSeat: 20,
         sourceUrl: "https://anthropic.com/pricing",
         lastVerified: "2026-05-07",
       },

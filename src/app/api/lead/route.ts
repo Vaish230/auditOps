@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import { createServerSupabase } from "@/lib/supabase/server";
-import { randomUUID } from "crypto";
 import { sendConfirmationEmail } from "@/lib/email";
 
 export async function POST(request: Request) {
@@ -16,20 +15,27 @@ export async function POST(request: Request) {
     }
 
     const supabase = createServerSupabase();
+
+    // First, get the public_id from the audits table using the UUID
+    const { data: audit, error: auditError } = await supabase
+      .from("audits")
+      .select("public_id")
+      .eq("id", audit_id)
+      .single();
+
+    if (auditError || !audit) {
+      console.error("Audit not found:", auditError);
+      return NextResponse.json({ error: "Audit not found" }, { status: 404 });
+    }
+
+    // Insert the lead
     const { error } = await supabase.from("leads").insert({
-      id: randomUUID(),
       audit_id,
       email,
       company: company || null,
       role: role || null,
       team_size: team_size || null,
     });
-
-    // inside the POST handler, right after the insert:
-    await sendConfirmationEmail(
-      email,
-      `${process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"}/audit/${audit_id}`,
-    );
 
     if (error) {
       console.error("Lead insert error:", error);
@@ -39,7 +45,9 @@ export async function POST(request: Request) {
       );
     }
 
-    // TODO: send transactional email via Resend (we'll add later)
+    // Send email with the correct public_id
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+    await sendConfirmationEmail(email, `${siteUrl}/audit/${audit.public_id}`);
 
     return NextResponse.json({ success: true });
   } catch (err) {

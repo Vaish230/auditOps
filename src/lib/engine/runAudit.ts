@@ -1,4 +1,4 @@
-import { tools, type ToolConfig, type ToolPlan } from "@/lib/pricing";
+import { tools } from "@/lib/pricing";
 import type { AuditInput, AuditResult, Finding } from "./type";
 
 export function runAudit(input: AuditInput): AuditResult {

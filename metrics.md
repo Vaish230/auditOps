@@ -7,9 +7,9 @@ This directly feeds the consultation pipeline and is the strongest leading indic
 
 ## 3 input metrics that drive the North Star
 
-1. **Audits completed per week** – top‑of‑funnel volume.
-2. **% of audits with >$500 savings** – engine effectiveness and user profile fit.
-3. **Lead capture rate** – how many users leave an email after seeing their results.
+1. **Audits completed per week** - top‑of‑funnel volume.
+2. **% of audits with >$500 savings** - engine effectiveness and user profile fit.
+3. **Lead capture rate** - how many users leave an email after seeing their results.
 
 ## What I'd instrument first
 
@@ -22,5 +22,5 @@ This directly feeds the consultation pipeline and is the strongest leading indic
 If, after 30 days, the percentage of audits with >$500 savings falls below 15%, I'd pivot:
 
 - Add more tools and more aggressive credit‑based recommendations.
-- Re‑examine the target audience – maybe the tool attracts enterprises with custom pricing, not startups.
+- Re‑examine the target audience - maybe the tool attracts enterprises with custom pricing, not startups.
 - If the volume is high but the savings are negligible, the tool becomes a content/SEO asset rather than a direct lead‑gen engine, and the consultation ask would be removed.

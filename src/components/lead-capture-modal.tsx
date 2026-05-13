@@ -52,7 +52,7 @@ export function LeadCaptureModal({
           </CardHeader>
           <CardContent>
             <p className="text-muted-foreground">
-              We'll send you the full report and reach out if there are big
+              We&apos;ll send you the full report and reach out if there are big
               savings opportunities.
             </p>
             <Button onClick={onClose} className="mt-4 w-full">
