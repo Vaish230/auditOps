@@ -8,6 +8,7 @@ Built for the Credex Web Development Intern Assignment.
 **30‑second walkthrough (Loom):**  
 [Watch the demo](https://www.loom.com/share/88116e88ecbc4c2f95734ef8378fbada)
 
+![Email confirmation](email.png)
 _Replace with actual screenshots or a 30‑second screen recording link (YouTube/Loom)._
 
 ## Quick Start
