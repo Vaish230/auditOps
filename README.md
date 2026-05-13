@@ -3,10 +3,12 @@
 A free tool that helps startups identify overspending on AI tools and suggests cheaper alternatives or discounted credits via Credex.  
 Built for the Credex Web Development Intern Assignment.
 
-## Screenshots / Demo
+## Demo
 
 **30‑second walkthrough (Loom):**  
 [Watch the demo](https://www.loom.com/share/88116e88ecbc4c2f95734ef8378fbada)
+
+## Email confirmation
 
 ![Email confirmation](email.png)
 _Replace with actual screenshots or a 30‑second screen recording link (YouTube/Loom)._
@@ -16,14 +18,13 @@ _Replace with actual screenshots or a 30‑second screen recording link (YouTube
 ```bash
 # Clone the repo
 git clone https://github.com/Vaish230/auditOps.git
-cd ai-spend-audit
+
 
 # Install dependencies
 npm install
 
 # Set up environment variables
-cp .env.example .env.local
-# Fill in your Supabase and OpenRouter keys in .env.local
+# Create a .env.local file and add your Supabase, OpenRouter, and Resend keys
 
 # Start the dev server
 npm run dev
