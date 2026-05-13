@@ -1,7 +1,6 @@
 # AI Spend Audit
 
-A free tool that helps startups identify overspending on AI tools and suggests cheaper alternatives or discounted credits via Credex.  
-Built for the Credex Web Development Intern Assignment.
+A free tool that helps startups identify overspending on AI tools and suggests cheaper alternatives or discounted credits via Credex.
 
 ## Demo
 
